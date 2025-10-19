@@ -64,6 +64,11 @@ class Menu:
         text_rect.midtop = (position_x, position_y)
         self.display.blit(text, text_rect)
 
+    def show_menu_logo(self, position_x, position_y):
+        start_logo_rect = self.menu_logo.get_rect()
+        start_logo_rect.midtop = (position_x, position_y)
+        self.display.blit(self.menu_logo, start_logo_rect)
+
     def draw_sprites(self):
         #desenhar sprites
         self.display.fill(constant.BLACK) #limpando a tela
@@ -71,6 +76,9 @@ class Menu:
         pygame.display.flip()
 
     def show_start_screen(self):
+        self.show_menu_logo(constant.DISPLAY_WIDTH/2, 20)
+        pygame.mixer.music.load(os.path.join(self.sounds_directory, constant.MENU_MUSIC))
+        pygame.mixer.music.play()
         self.show_text('Pressione uma tecla para jogar', 32, constant.YELLOW,constant.DISPLAY_WIDTH / 2, 320)
         self.show_text('Desenvolvido por Marcos Grubert', 19, constant.WHITE, constant.DISPLAY_WIDTH / 2, 570)
         pygame.display.flip()
@@ -86,6 +94,8 @@ class Menu:
                     self.running = False
                 if event.type == pygame.KEYUP:
                     waiting = False
+                    pygame.mixer.music.stop()
+                    pygame.mixer.Sound(os.path.join(self.sounds_directory, constant.MENU_START)).play()
 
     def show_end_screen(self):
         pass

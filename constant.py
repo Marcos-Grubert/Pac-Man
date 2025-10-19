@@ -12,6 +12,11 @@ FONT = 'lucida calligraphy'
 #G
 GAME_TITLE = 'Pac-Man'
 
+#I
+#M
+MENU_MUSIC = 'intermission.wav'
+MENU_START = 'munch_1.wav'
+
 #L
 LOGO = 'logo.png'
 
